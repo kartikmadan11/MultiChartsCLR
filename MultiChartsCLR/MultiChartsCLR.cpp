@@ -25,25 +25,40 @@ void MultiChartsWrapper::SetTrainingData(array<System::Double> ^trainingData)
 
 void MultiChartsWrapper::SetDateArray(array<System::String^> ^dateArray)
 {
-	int totalCharLength = dateArray->Length * dateArray[0]->Length;
+	int dateWidth = dateArray[0]->Length + 1;
+	int totalCharLength = dateArray->Length * dateWidth;
+
 	char* dateArrayUnmanaged = new char[totalCharLength];
-	for (int i = 0; i < dateArray->Length; i++)
+	
+	for (int i = 0; i < totalCharLength; i += dateArray[0]->Length)
 	{
-		dateArrayUnmanaged[i] = (char*)(void*)Marshal::StringToHGlobalAnsi(dateArray[i]);
+		char* date = new char[dateWidth];
+		date = (char*)(void*)Marshal::StringToHGlobalAnsi(dateArray[i / dateWidth]);
+		for (int j = 0; j < dateWidth; j++)
+		{
+			dateArrayUnmanaged[i + j] = date[j];
+		}
 	}
-	Marshal::FreeHGlobal(dateArrayU);
-/*
-	char*  = new char[dateArray->Length];
-	Marshal::Copy(dateArray, 0, System::IntPtr(dateArrayUnmanaged), dateArray->Length);
-	multiCharts->InitDateArray(dateArray->Length);
+
+	multiCharts->InitDateArray(totalCharLength);
 	multiCharts->SetDateArray(dateArrayUnmanaged);
-	delete dateArrayUnmanaged;*/
 }
 
-void MultiChartsWrapper::SetFileName(System::String fileName)
+void MultiChartsWrapper::SetDateArrayUNIX(array<long long> ^dateArray)
+{
+	long long* dateArrayUnmanaged = new long long[dateArray->Length];
+	Marshal::Copy(dateArray, 0, System::IntPtr(dateArrayUnmanaged), dateArray->Length);
+	multiCharts->InitDateArrayUNIX(dateArray->Length);
+	multiCharts->SetDateArrayUNIX(dateArrayUnmanaged);
+	delete dateArrayUnmanaged;
+}
+
+void MultiChartsWrapper::SetFileName(System::String^ fileName)
 {
 	char* fileNameUnmanaged = new char[fileName->Length];
-	Marshal::Copy(fileName, 0, System::IntPtr(fileNameUnmanaged), fileName->Length);
+	fileNameUnmanaged = (char*)(void*)Marshal::StringToHGlobalAnsi(fileName);
+	
+	multiCharts->InitFileName(fileName->Length);
 	multiCharts->SetDateArray(fileNameUnmanaged);
 	delete fileNameUnmanaged;
 }
