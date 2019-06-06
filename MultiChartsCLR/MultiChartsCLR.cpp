@@ -20,7 +20,7 @@ void MultiChartsWrapper::SetTrainingData(array<System::Double> ^trainingData)
 	Marshal::Copy(trainingData, 0, System::IntPtr(trainingDataUnmanaged), trainingData->Length);
 	multiCharts->InitDateArray(trainingData->Length);
 	multiCharts->SetTrainingData(trainingDataUnmanaged);
-	delete trainingDataUnmanaged;
+	//delete[] trainingDataUnmanaged;
 }
 
 void MultiChartsWrapper::SetDateArray(array<System::String^> ^dateArray)
@@ -50,9 +50,9 @@ void MultiChartsWrapper::SetDateArrayUNIX(array<long long> ^dateArray)
 	Marshal::Copy(dateArray, 0, System::IntPtr(dateArrayUnmanaged), dateArray->Length);
 	multiCharts->InitDateArrayUNIX(dateArray->Length);
 	multiCharts->SetDateArrayUNIX(dateArrayUnmanaged);
-	delete dateArrayUnmanaged;
+	//delete[] dateArrayUnmanaged;
 }
-
+	
 void MultiChartsWrapper::SetFileName(System::String^ fileName)
 {
 	char* fileNameUnmanaged = new char[fileName->Length];
@@ -60,7 +60,7 @@ void MultiChartsWrapper::SetFileName(System::String^ fileName)
 	
 	multiCharts->InitFileName(fileName->Length);
 	multiCharts->SetDateArray(fileNameUnmanaged);
-	delete fileNameUnmanaged;
+	delete[] fileNameUnmanaged;
 }
 
 void MultiChartsWrapper::SetLearningRate(double learningRate)
