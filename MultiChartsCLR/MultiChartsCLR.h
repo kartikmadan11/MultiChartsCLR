@@ -10,7 +10,6 @@ namespace MultiChartsCppWrapper {
 		~MultiChartsWrapper();
 
 		void SetTrainingData(array<double> ^trainingData, int size);
-		void SetDateArray(array<System::String^> ^dateArray);
 		void SetDateArrayUNIX(array<long long> ^dateArray);
 		void SetFileName(System::String^ fileName);
 		void SetLearningRate(double learningRate);

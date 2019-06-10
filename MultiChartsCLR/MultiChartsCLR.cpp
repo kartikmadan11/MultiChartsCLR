@@ -23,27 +23,6 @@ void MultiChartsWrapper::SetTrainingData(array<double> ^trainingData, int size)
 	//delete[] trainingDataUnmanaged;
 }
 
-void MultiChartsWrapper::SetDateArray(array<System::String^> ^dateArray)
-{
-	int dateWidth = dateArray[0]->Length + 1;
-	int totalCharLength = dateArray->Length * dateWidth;
-
-	char* dateArrayUnmanaged = new char[totalCharLength];
-	
-	for (int i = 0; i < totalCharLength; i += dateArray[0]->Length)
-	{
-		char* date = new char[dateWidth];
-		date = (char*)(void*)Marshal::StringToHGlobalAnsi(dateArray[i / dateWidth]);
-		for (int j = 0; j < dateWidth; j++)
-		{
-			dateArrayUnmanaged[i + j] = date[j];
-		}
-	}
-
-	multiCharts->InitDateArray(totalCharLength);
-	multiCharts->SetDateArray(dateArrayUnmanaged);
-}
-
 void MultiChartsWrapper::SetDateArrayUNIX(array<long long> ^dateArray)
 {
 	long long* dateArrayUnmanaged = new long long[dateArray->Length];
