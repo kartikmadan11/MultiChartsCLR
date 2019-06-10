@@ -14,11 +14,11 @@ MultiChartsWrapper::~MultiChartsWrapper()
 	this->multiCharts->DisposeMultiCharts();
 }
 
-void MultiChartsWrapper::SetTrainingData(array<System::Double> ^trainingData)
+void MultiChartsWrapper::SetTrainingData(array<double> ^trainingData, int size)
 {
 	double* trainingDataUnmanaged = new double[trainingData->Length];
 	Marshal::Copy(trainingData, 0, System::IntPtr(trainingDataUnmanaged), trainingData->Length);
-	multiCharts->InitDateArray(trainingData->Length);
+	multiCharts->InitTrainingData(size);
 	multiCharts->SetTrainingData(trainingDataUnmanaged);
 	//delete[] trainingDataUnmanaged;
 }
@@ -59,7 +59,7 @@ void MultiChartsWrapper::SetFileName(System::String^ fileName)
 	fileNameUnmanaged = (char*)(void*)Marshal::StringToHGlobalAnsi(fileName);
 	
 	multiCharts->InitFileName(fileName->Length);
-	multiCharts->SetDateArray(fileNameUnmanaged);
+	multiCharts->SetFileName(fileNameUnmanaged);
 	delete[] fileNameUnmanaged;
 }
 
