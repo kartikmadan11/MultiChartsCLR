@@ -8,9 +8,14 @@ namespace MultiChartsCppWrapper {
 	public:
 		MultiChartsWrapper();
 		~MultiChartsWrapper();
+		void DisposeMultiCharts();
 
-		void SetTrainingData(array<double> ^trainingData, int size);
+		void SetTrainingData(array<double> ^trainingData);
+		void SetTestingData(array<double> ^testingData);
+		
+		void SetTestDateArrayUNIX(array<long long> ^ dateArray);
 		void SetDateArrayUNIX(array<long long> ^dateArray);
+		
 		void SetFileName(System::String^ fileName);
 		void SetLearningRate(double learningRate);
 		void SetEpochs(int epochs);
@@ -19,7 +24,10 @@ namespace MultiChartsCppWrapper {
 		void SetMomentum(int momentum);
 		void SetTestingPart(double testingPart);
 		void SetTestingWeight(double testingWeight);
+		
 		double TrainModel();
+		double TestModel();
+		array<double>^ Predict(int ticks);
 
 	private:
 		MultiCharts *multiCharts;
