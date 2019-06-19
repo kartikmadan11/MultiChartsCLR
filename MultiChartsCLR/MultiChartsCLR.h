@@ -21,9 +21,7 @@ namespace MultiChartsCppWrapper {
 		void SetEpochs(int epochs);
 		void SetScale(int scale);
 		void SetOptimizer(int optimizer);
-		void SetMomentum(int momentum);
-		void SetTestingPart(double testingPart);
-		void SetTestingWeight(double testingWeight);
+		void SetMomentum(double momentum);
 		
 		double TrainModel();
 		double TestModel();

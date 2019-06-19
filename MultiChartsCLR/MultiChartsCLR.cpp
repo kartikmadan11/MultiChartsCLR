@@ -85,19 +85,9 @@ void MultiChartsWrapper::SetOptimizer(int optimizer)
 	multiCharts->SetOptimizer(optimizer);
 }
 
-void MultiChartsWrapper::SetMomentum(int momentum)
+void MultiChartsWrapper::SetMomentum(double momentum)
 {
 	multiCharts->SetMomentum(momentum);
-}
-
-void MultiChartsWrapper::SetTestingPart(double testingPart)
-{
-	multiCharts->SetTestingPart(testingPart);
-}
-
-void MultiChartsWrapper::SetTestingWeight(double testingWeight)
-{
-	multiCharts->SetTestingWeight(testingWeight);
 }
 
 double MultiChartsWrapper::TrainModel()
