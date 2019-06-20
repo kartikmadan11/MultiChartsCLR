@@ -100,6 +100,11 @@ double MultiChartsWrapper::TestModel()
 	return multiCharts->TestModel();
 }
 
+double MultiChartsWrapper::Evaluate(int metric)
+{
+	return multiCharts->Evaluate(metric);
+}
+
 array<double>^ MultiChartsWrapper::Predict(int ticks)
 {
 	double* unmanagedArr = multiCharts->Predict(ticks);

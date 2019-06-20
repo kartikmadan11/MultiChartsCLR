@@ -25,6 +25,7 @@ namespace MultiChartsCppWrapper {
 		
 		double TrainModel();
 		double TestModel();
+		double Evaluate(int metric);
 		array<double>^ Predict(int ticks);
 
 	private:
