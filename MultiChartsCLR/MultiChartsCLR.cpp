@@ -90,6 +90,11 @@ void MultiChartsWrapper::SetMomentum(double momentum)
 	multiCharts->SetMomentum(momentum);
 }
 
+void MultiChartsWrapper::SetTestingWeight(double testingWeight)
+{
+	multiCharts->SetTestingWeight(testingWeight);
+}
+
 double MultiChartsWrapper::TrainModel()
 {
 	return multiCharts->TrainModel();
@@ -100,9 +105,15 @@ double MultiChartsWrapper::TestModel()
 	return multiCharts->TestModel();
 }
 
-double MultiChartsWrapper::Evaluate(int metric)
+array<double>^ MultiChartsWrapper::Evaluate(int metrics)
 {
-	return multiCharts->Evaluate(metric);
+	double* unmanagedArr = multiCharts->Evaluate();
+	array<System::Double> ^managedArr = gcnew array<System::Double>(metrics);
+	for (int i = 0; i < metrics; i++)
+	{
+		managedArr[i] = unmanagedArr[i];
+	}
+	return managedArr;
 }
 
 array<double>^ MultiChartsWrapper::Predict(int ticks)

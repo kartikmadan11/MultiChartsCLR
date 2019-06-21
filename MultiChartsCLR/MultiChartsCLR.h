@@ -22,10 +22,11 @@ namespace MultiChartsCppWrapper {
 		void SetScale(int scale);
 		void SetOptimizer(int optimizer);
 		void SetMomentum(double momentum);
+		void SetTestingWeight(double testingWeight);
 		
 		double TrainModel();
 		double TestModel();
-		double Evaluate(int metric);
+		array<double>^ Evaluate(int metrics);
 		array<double>^ Predict(int ticks);
 
 	private:
