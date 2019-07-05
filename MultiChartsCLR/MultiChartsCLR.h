@@ -1,4 +1,4 @@
-#include "C:\Users\magic\source\repos\MultiCharts\MultiCharts\MultiCharts.cpp"
+#include "C:\Users\kartik\source\repos\MultiCharts\MultiCharts\MultiCharts.cpp"
 
 #pragma once
 
